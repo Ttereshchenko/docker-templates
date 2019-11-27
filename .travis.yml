@@ -1,0 +1,13 @@
+sudo: required
+services: 
+  - docker
+
+script:
+  - export ROOT=$(pwd)
+  - cd ./db/oracle/
+  - docker build -t ttereshchenko/oracle-db-xe11g -f Dockerfile .
+  - cd ${ROOT}
+
+after_success: 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
+  - docker push ttereshchenko/oracle-db-xe11g 
