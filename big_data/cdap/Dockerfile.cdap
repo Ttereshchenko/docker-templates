@@ -1,0 +1,5 @@
+FROM caskdata/cdap-sandbox:6.0.0
+
+WORKDIR '/opt/cdap/sandbox/bin'
+
+CMD ./cdap sandbox start --foreground
